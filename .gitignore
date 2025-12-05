@@ -1,5 +1,6 @@
 composer.lock
 /webroot/bootstrap_u_i
+/webroot/debug_kit
 
 # CakePHP specific files #
 ##########################
