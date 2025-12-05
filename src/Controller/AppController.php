@@ -48,5 +48,15 @@ class AppController extends Controller
          * see https://book.cakephp.org/5/en/controllers/components/form-protection.html
          */
         //$this->loadComponent('FormProtection');
+        $design = 'bootstrap';
+        switch ($design) {
+            case 'bootstrap':
+                $this->viewBuilder()->setClassName(\BootstrapUI\View\UIView::class);
+                break;
+            default:
+                $this->viewBuilder()->setClassName(\App\View\AppView::class);
+                break;
+        }
+        $this->viewBuilder()->setLayout('layout.' . $design);
     }
 }

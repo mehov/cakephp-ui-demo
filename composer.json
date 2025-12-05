@@ -9,7 +9,10 @@
         "cakephp/cakephp": "5.2.*",
         "cakephp/migrations": "^4.0.0",
         "cakephp/plugin-installer": "^2.0",
-        "mobiledetect/mobiledetectlib": "^4.8.03"
+        "friendsofcake/bootstrap-ui": "^5.1",
+        "mobiledetect/mobiledetectlib": "^4.8.03",
+        "twbs/bootstrap": "^5",
+        "twbs/bootstrap-icons": "@stable"
     },
     "require-dev": {
         "cakephp/bake": "^3.0.0",
@@ -46,6 +49,13 @@
     "scripts": {
         "post-install-cmd": "App\\Console\\Installer::postInstall",
         "post-create-project-cmd": "App\\Console\\Installer::postInstall",
+        "post-update-cmd": [
+            "bin/cake plugin assets symlink",
+            "rm -rf ./webroot/bootstrap_u_i && mkdir -p ./webroot/bootstrap_u_i",
+            "ln -s ../../vendor/twbs/bootstrap/dist/css ./webroot/bootstrap_u_i/css",
+            "ln -s ../../vendor/twbs/bootstrap/dist/js ./webroot/bootstrap_u_i/js",
+            "ln -s ../../vendor/twbs/bootstrap-icons/font ./webroot/bootstrap_u_i/font"
+        ],
         "check": [
             "@test",
             "@cs-check"
