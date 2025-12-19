@@ -43,20 +43,28 @@ class AppController extends Controller
 
         $this->loadComponent('Flash');
 
-        /*
-         * Enable the following component for recommended CakePHP form protection settings.
-         * see https://book.cakephp.org/5/en/controllers/components/form-protection.html
-         */
-        //$this->loadComponent('FormProtection');
-        $design = 'bootstrap';
-        switch ($design) {
-            case 'bootstrap':
-                $this->viewBuilder()->setClassName(\BootstrapUI\View\UIView::class);
-                break;
-            default:
-                $this->viewBuilder()->setClassName(\App\View\AppView::class);
-                break;
+        // Reusable Session handle
+        $session = $this->getRequest()->getSession();
+
+        // Available designs
+        $designs = [
+            'default' => \App\View\AppView::class,
+            'bootstrap' => \BootstrapUI\View\UIView::class,
+            'dkfds' => \Bakeoff\DKFDS\View\View::class,
+        ];
+        // Use requested design, else design from Session
+        $design = $this->getRequest()->getQuery('design');
+        if (empty($design)) {
+            $design = $session->read('design');
         }
+        // Fall back to default design
+        if (empty($design) || !isset($designs[$design])) {
+            $design = \array_key_first($designs);
+        }
+        // Persist selected design
+        $session->write('design', $design);
+        // Use selected design
+        $this->viewBuilder()->setClassName($designs[$design]);
         $this->viewBuilder()->setLayout('layout.' . $design);
     }
 }

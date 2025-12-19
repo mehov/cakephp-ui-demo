@@ -52,6 +52,7 @@ class Application extends BaseApplication
             // The bake plugin requires fallback table classes to work properly
             FactoryLocator::add('Table', (new TableLocator())->allowFallbackClass(false));
         }
+        $this->addPlugin(\Bakeoff\DKFDS\DKFDSPlugin::class);
     }
 
     /**

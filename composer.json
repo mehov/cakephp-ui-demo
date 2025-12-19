@@ -4,8 +4,23 @@
     "license": "MIT",
     "type": "project",
     "homepage": "https://cakephp.org",
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "dkfds/dkfds",
+                "version": "11.1.0",
+                "source": {
+                    "type": "git",
+                    "url": "https://github.com/detfaellesdesignsystem/dkfds-components.git",
+                    "reference": "11.1.0"
+                }
+            }
+        }
+    ],
     "require": {
         "php": ">=8.1",
+        "bakeoff/dkfds": "dev-master",
         "cakephp/cakephp": "5.2.*",
         "cakephp/migrations": "^4.0.0",
         "cakephp/plugin-installer": "^2.0",
@@ -54,7 +69,8 @@
             "rm -rf ./webroot/bootstrap_u_i && mkdir -p ./webroot/bootstrap_u_i",
             "ln -s ../../vendor/twbs/bootstrap/dist/css ./webroot/bootstrap_u_i/css",
             "ln -s ../../vendor/twbs/bootstrap/dist/js ./webroot/bootstrap_u_i/js",
-            "ln -s ../../vendor/twbs/bootstrap-icons/font ./webroot/bootstrap_u_i/font"
+            "ln -s ../../vendor/twbs/bootstrap-icons/font ./webroot/bootstrap_u_i/font",
+            "bin/cake dkfds install"
         ],
         "check": [
             "@test",
