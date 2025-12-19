@@ -1,4 +1,6 @@
 <?php
+$this->extend('self-service/form-contact/0-common');
+
 echo $this->Form->create(null);
 
 echo $this->Form->control('name', [
